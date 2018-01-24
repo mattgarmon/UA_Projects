@@ -4,4 +4,4 @@
 
 A collection of C++ projects from various courses at The University of Akron
 
-Included with each project is a CMakeLists.txt which allows it to be built with CMake.
+Included with each project is a README which will explain building and running the program.
