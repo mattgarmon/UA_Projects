@@ -24,15 +24,42 @@ struct Grid{
             items[i].resize(y);
     }
 
-    //to swap rows and columns of grid
-    void transpose(){
+    //to rotate the grid
+    //makes rows as easy as columns, despite greater time complexity
+    void rotate_right(){
+        //create temporary grid
         std::vector< std::vector<int> > temp(items[0].size());
         for(int i = 0; i < temp.size(); ++i)
             temp[i].resize(items.size());
 
+        //transpose
         for(int i = 0; i < items[0].size(); ++i)
             for(int j = 0; j < items.size(); ++j)
                 temp[i][j] = items[j][i];
+
+        //reverse columns
+        for(int i = 0; i < temp[0].size(); ++i)
+            for(int j = 0, k = temp.size()-1; j < k; j++, k--)
+                std::swap(temp[j][i], temp[j][i]);
+
+        items = temp;
+    }
+
+    void rotate_left(){
+        //create temporary grid
+        std::vector< std::vector<int> > temp(items[0].size());
+        for(int i = 0; i < temp.size(); ++i)
+            temp[i].resize(items.size());
+
+        //transpose
+        for(int i = 0; i < items[0].size(); ++i)
+            for(int j = 0; j < items.size(); ++j)
+                temp[i][j] = items[j][i];
+
+        //reverse rows
+        for(int i = 0; i < temp.size(); ++i)
+            for(int j = 0, k = temp[0].size()-1; j < k; j++, k--)
+                std::swap(temp[i][j], temp[i][k]);
 
         items = temp;
     }
@@ -52,9 +79,9 @@ struct Grid{
     //removes the minimum energy row seam
     void remove_row_seam(){
         //transpose grid, work with columns, transpose back
-        transpose();
+        rotate_right();
         remove_column_seam();
-        transpose();
+        rotate_left();
     }
 
     //adds a column seam at minimum energy column seam
@@ -85,9 +112,9 @@ struct Grid{
     //adds a row seam at minimum energy row seam
     void insert_row_seam(){
         //transpose grid, work with columns, transpose back
-        transpose();
+        rotate_right();
         insert_column_seam();
-        transpose();
+        rotate_left();
     }
 
     //function to find a minimum energy column in a grid
@@ -219,14 +246,14 @@ struct Grid{
 //function to parse a PGM file to a grid of integers
 Grid parse_pgm(std::string filename){
 	std::string line;
-    int columns, rows;
+    int columns, rows, max;
     std::ifstream image(filename.c_str()); //open pgm image
     getline(image, line); //read version and discard
     while(image.peek() == '#') //read comments and discard
     	getline(image, line);
     image >> columns; //read columns
     image >> rows; //read rows
-    getline(image, line); //read max value and discard
+    image >> max; //read max value and discard
 
     Grid g(rows, columns); //fill grid with grayscale values
 	for(int i = 0; i < rows; ++i)
