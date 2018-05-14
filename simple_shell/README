@@ -1,0 +1,26 @@
+Matt Garmon - 2018
+Operating Systems
+
+--Compiling and Running the Shell
+1) To compile the shell: 'g++ -o shell myshell.c'
+2) TO run the shell: ./shell
+
+--Usage
+To use the shell: 1) Type a command with parameters
+                  2) Press enter
+Note: Typing the command 'H' will open up a list of all available commands.
+
+--Commands
+C file1 file2   Copy; create file2, copy file1 to file2 without deleting file1.
+D file          Delete the named file.
+E comment       Echo; display comment on screen.
+H               Help; display this user manual.
+M file          Make; create the named text file.
+P file          Print; display the contents of the named file on screen.
+Q               Quit the shell.
+S               Surf the web by launching a browser.
+W               Wipe; clear the screen.
+X program       Execute the named program.
+
+--Citations
+Starter file provided
