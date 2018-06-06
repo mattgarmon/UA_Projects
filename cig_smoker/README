@@ -1,0 +1,11 @@
+(c) Matt Garmon - 2018
+
+Implementation of Parnas' solution to the cigarette smoker's problem in C++.
+For information on the problem: https://en.wikipedia.org/wiki/Cigarette_smokers_problem
+
+Compiling:
+From a linux terminal, use the command 'g++ -o smoke cig_smoker.cpp -lpthread'
+Note: '-lpthread' is used in the linking stage to find pthread.h symbols
+
+Running:
+From a linux terminal, use the command './smoke' to run the executable
