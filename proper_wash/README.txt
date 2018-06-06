@@ -14,7 +14,6 @@ Adding these functionalities are important in the hand washing process for food 
 service individuals alike.
 
 Software Theory of Operation:
-
 The software will interface with the sensor readings to provide relevant instructions and 
 information to the user. It will guide a user through the proper hand washing cycle by 
 instructing through a soap lathering cycle, temperature requirement checking, and hand 
